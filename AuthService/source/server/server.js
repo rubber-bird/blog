@@ -1,5 +1,6 @@
 const express = require('express')
 const logger = require('morgan')
+const Promise = require('bluebird')
 const api = require('../api/auth')
 
 const startServer = (options) => {

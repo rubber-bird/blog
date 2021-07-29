@@ -1,4 +1,5 @@
 'use strict'
+const Promise = require('bluebird')
 
 const repository = (db) => {
   // db right here
