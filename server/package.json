@@ -2,15 +2,15 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon --watch src ./src/index.js"
+    "start:dev": "nodemon --watch src -r dotenv/config ./src/index.js "
   },
   "keywords": [],
   "author": "Marko Turchyn <marko.turchyn@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "dotenv": "^10.0.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12"
   },
