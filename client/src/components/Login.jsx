@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import login from '../api/auth/login.js';
+
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -10,7 +12,13 @@ const Login = () => {
       password: password
     };
 
-    console.log('sss', requestObject);
+    login(requestObject)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
   }
 
   return (
