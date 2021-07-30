@@ -4,9 +4,13 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-
   const handleSubmit = (event) => {
-    console.log('username', username, 'password', password)
+    const requestObject = {
+      username: username,
+      password: password
+    };
+
+    console.log('sss', requestObject);
   }
 
   return (

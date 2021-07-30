@@ -8,7 +8,15 @@ const Register = () => {
   const [lastName, setLastName] = useState('');
 
   const handleSubmit = () => {
-    console.log('submit')
+    const requestObject = {
+      username: username,
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName
+    };
+
+    console.log('submit', requestObject);
   }
 
   return (
