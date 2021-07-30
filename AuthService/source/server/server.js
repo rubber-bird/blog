@@ -1,6 +1,7 @@
 const express = require('express')
 const logger = require('morgan')
 const Promise = require('bluebird')
+
 const api = require('../api/auth')
 
 const startServer = (options) => {
@@ -11,8 +12,8 @@ const startServer = (options) => {
     }
 
     const app = express()
+
     app.use(logger('dev'))
-    // app.use()
 
     api(app, options)
 
