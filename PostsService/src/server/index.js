@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const logger = require('morgan');
 const Promise = require('bluebird');
 
 const init = ( config ) => {
@@ -14,6 +15,8 @@ const init = ( config ) => {
     }
 
     const app = express();
+
+    app.use(logger('dev'));
 
     const server = app.listen(config.serverSettings.PORT, () => {
       console.log('config', config);
