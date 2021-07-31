@@ -2,19 +2,20 @@
   "name": "postsservice",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "",
-    "start:dev": "nodemon --watch src ./src/index.js"
+    "start:dev": "nodemon --watch src -r dotenv/config ./src/index.js"
   },
   "keywords": [],
   "author": "Marko Turchyn <marko.turchyn@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "bluebird": "^3.7.2",
     "express": "^4.17.1"
   },
   "devDependencies": {
+    "dotenv": "^10.0.0",
     "jest": "^27.0.6",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12"
