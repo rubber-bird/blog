@@ -7,7 +7,13 @@ const databaseSettings = {
 
 };
 
+const loggerSettings = {
+  mode: 'dev',
+  other: {}
+};
+
 module.exports = Object.assign({}, {
   serverSettings,
-  databaseSettings
+  databaseSettings,
+  loggerSettings
 });

@@ -4,6 +4,8 @@ const express = require('express');
 const logger = require('morgan');
 const Promise = require('bluebird');
 
+const api = require('../api');
+
 const init = ( config ) => {
   return new Promise((resolve, reject) => {
     if (!config.serverSettings) {
@@ -14,9 +16,15 @@ const init = ( config ) => {
       reject(new Error('The config should include database settings'));
     }
 
+    if (!config.loggerSettings) {
+      reject(new Error('The config should include logger settings'));
+    }
+
     const app = express();
 
-    app.use(logger('dev'));
+    app.use(logger(config.loggerSettings.mode, config.loggerSettings.other));
+
+    api(app, config);
 
     const server = app.listen(config.serverSettings.PORT, () => {
       console.log('config', config);
