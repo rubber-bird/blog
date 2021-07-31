@@ -5,6 +5,7 @@ const logger = require('morgan');
 const Promise = require('bluebird');
 
 const api = require('../api');
+const model = require('../model');
 
 const init = ( config ) => {
   return new Promise((resolve, reject) => {
@@ -26,7 +27,7 @@ const init = ( config ) => {
 
     api(app, config);
 
-    const server = app.listen(config.serverSettings.PORT, () => {
+    const server = app.listen(config.serverSettings.PORT, config.serverSettings.HOST, () => {
       console.log('config', config);
       resolve(server);
     })

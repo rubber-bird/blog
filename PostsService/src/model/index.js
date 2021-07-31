@@ -3,7 +3,7 @@
 const model = (dbConnection) => {
   const getAllPosts = () => {
     return new Promise(( resolve, reject ) => {
-      if()
+      // if()
     })
   }
 
