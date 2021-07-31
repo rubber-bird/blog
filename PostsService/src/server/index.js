@@ -1,5 +1,5 @@
 
-const initService = ( config ) => {
+const init = ( config ) => {
   return new Promise((resolve, reject) => {
     if (!config) {
       reject(new Error('Hahaa'));
@@ -8,4 +8,4 @@ const initService = ( config ) => {
   });
 }
 
-module.exports = Object.assign({}, { initService })
+module.exports = Object.assign({}, { init })
