@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import register from '../api/auth/register.js';
+
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -15,8 +17,9 @@ const Register = () => {
       firstName: firstName,
       lastName: lastName
     };
-
-    console.log('submit', requestObject);
+    register(requestObject)
+      .then(res => console.log(res))
+      .catch(err => console.error(err))
   }
 
   return (
@@ -39,7 +42,7 @@ const Register = () => {
           <input
             type='email'
             onChange = {
-              (event) => setUsername(event.target.value)
+              (event) => setEmail(event.target.value)
             }
           ></input>
         </label>

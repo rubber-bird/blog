@@ -17,7 +17,7 @@ process.on('Error: no db connection', () => {
 })
 
 // Starting everything here :)
-console.log(db())
+console.log()
 model.connect()
   .then((connection) => {
     server.init(config)
