@@ -7,6 +7,7 @@ const app = express();
 const LocalStrategy = require('passport-local').Strategy;
 
 const AuthRouter = require('./routes/auth');
+const PostsRouter = require('./routes/posts');
 
 passport.use(
   'signup',
@@ -37,5 +38,6 @@ passport.use(new LocalStrategy(
 ))
 
 app.use('/auth', AuthRouter);
+app.use('/posts', PostsRouter);
 
 module.exports = app;
