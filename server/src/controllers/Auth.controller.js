@@ -1,4 +1,5 @@
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const Users = require('../models/Auth.model');
@@ -7,8 +8,27 @@ const login = (req, res, next) => {
   const { username, password } = req.body;
   passport.authenticate('login', {session: false},
   (err, user, info) => {
-    console.log(err, user, info)
-    res.send([err,user,info]);
+    // console.log(err, user, info)
+    if (err) {
+      res.status(500).send(err);
+    } else if (!user && info) {
+      res.status(322).send(info);
+    } else if (user && info) {
+      console.log(user);
+      jwt.sign({
+        userId: user
+      }, 'This is my key', (err, token) => {
+        if (err) {
+          res.sendStatus(500);
+        }
+        res.status(200).send({
+          msg: 'Success',
+          token: token
+        });
+      });
+    }
+
+    // res.send([err,user,info]);
   })(req,res, next);
 };
 
@@ -21,52 +41,53 @@ const register = (req, res) => {
     lastName
   } = req.body;
 
-    if (username && password) {
+    if (username && email && password) {
     Users.checkEmailOrUsername(username, email)
       .then((data) => {
         if (data.rows.length > 0) {
-          res.status(418).json({
+          return res.status(418).json({
             msg: 'Username or email exists',
           });
-          return;
         } else {
           bcrypt.genSalt(10, (err, salt) => {
             if (err) {
-              console.log(err);
-              res.sendStatus(500);
+              return res.sendStatus(500);
             }
             bcrypt.hash(password, salt, (error, hash) => {
               if (error) {
-                console.log(err)
-                res.sendStatus(500);
+                console.log(error);
+                return res.sendStatus(500);
               }
 
               Users.createUser(
                 email,
                 username,
-                password,
+                hash,
                 salt,
                 firstName,
                 lastName,
               )
                 .then((data) => {
-                  res.status(201).send(data);
+                  return res.status(201).send(data);
                 })
                 .catch((err) => {
-                  console.log(err);
-                  res.status(500).send(err);
+                  return res.status(322).send({
+                    msg: "username or email has to be unique"
+                  });
                 });
             });
           });
         }
       })
-      .catch((err) => res.status(500).json({
-        msg: err,
-      }));
+      .catch((err) => {
+        return res.status(322).send({
+          msg: "username or email has to be unique"
+        });
+      });
   } else if (!username || !password) {
-    res.sendStatus(422);
+    return res.sendStatus(422);
   } else {
-    res.sendStatus(400);
+    return res.sendStatus(400);
   }
 };
 

@@ -35,19 +35,24 @@ const createUser = (
   })
 };
 
-const findUser = (id) => {
+const findUser = (username) => {
   return new Promise((resolve, reject) => {
-
+    db.query('select * from users where username=$1;', [username], (err, result) => {
+      if (err) {
+        reject(new Error(err.stack));
+      }
+      resolve(result.rows[0]);
+    })
   })
 };
 
 const checkEmailOrUsername = (username, email) => {
   return new Promise((resolve, reject) => {
-    db.query("SELECT * FROM users WHERE username=$1 OR email=$2;", [username, email], (err, result) => {
+    db.query('select * from users where username=$1 or email=$2;', [username, email], (err, result) => {
       if(err) {
+        // console.log(err);
         reject(new Error(err.stack));
       }
-
       resolve(result);
     })
   })

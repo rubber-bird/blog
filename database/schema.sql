@@ -11,6 +11,8 @@ CREATE TABLE IF NOT EXISTS users (
   firstName VARCHAR(30) DEFAULT NULL,
   lastName VARCHAR(30) DEFAULT NULL,
 
+  UNIQUE(email),
+  UNIQUE(username),
   PRIMARY KEY (user_id)
 );
 

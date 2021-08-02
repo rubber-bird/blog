@@ -10,7 +10,6 @@ passport.use('login', new LocalStrategy(
     passwordField: "password"
   },
   async (username, password, callback) => {
-    // console.log('ddd', username, password)
     try {
       const user = await Users.findUser(username);
 
