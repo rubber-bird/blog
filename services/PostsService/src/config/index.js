@@ -4,7 +4,7 @@ const serverSettings = {
 };
 
 const databaseSettings = {
-
+  // HOST: process.env.HOST
 };
 
 const loggerSettings = {
