@@ -3,13 +3,38 @@
 const model = (dbConnection) => {
   const getAllPosts = () => {
     return new Promise(( resolve, reject ) => {
-      // if()
+      dbConnection.query('select * from posts_schema.posts;', (err, result) => {
+        if (err) {
+          reject(new Error(err.stack));
+        }
+
+        resolve(result.rows);
+      })
     })
   }
 
-  return Object.create({
-    getAllPosts
-  })
+  const createPost = (
+    userId,
+    title,
+    postText
+  ) => {
+    return new Promise(( resolve, reject ) => {
+      // console.log(dbConnection);
+      dbConnection.query('insert into posts_schema.posts (user_id, title, post_text) VALUES ($1, $2, $3) RETURNING post_id;',
+      [userId, title, postText], (err, result) => {
+        if (err) {
+          reject(new Error(err.stack));
+        }
+
+        resolve(result.rows[0]["post_id"]);
+      });
+    });
+  };
+
+  return {
+    getAllPosts,
+    createPost
+  }
 }
 
 const connect = (connection) => {

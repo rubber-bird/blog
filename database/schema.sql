@@ -17,12 +17,23 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS posts (
-  id INT NOT NULL AUTO_INCREMENT,
-  userId INT NOT NULL,
+  post_id SERIAL,
+  user_id INT NOT NULL,
   title VARCHAR(127) NOT NULL,
-  filPath VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id)
+  postItself VARCHAR(255) NOT NULL,
+
+  PRIMARY KEY (post_id)
 );
+
+CREATE SCHEMA posts_schema
+  CREATE TABLE posts (
+    post_id SERIAL,
+    user_id INT NOT NULL,
+    title VARCHAR(50) NOT NULL,
+    post_text TEXT,
+
+    PRIMARY KEY (post_id)
+  );
 
 CREATE TABLE IF NOT EXISTS comments (
   id INT NOT NULL AUTO_INCREMENT,

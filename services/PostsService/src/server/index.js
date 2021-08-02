@@ -3,6 +3,7 @@
 const express = require('express');
 const logger = require('morgan');
 const Promise = require('bluebird');
+const passport = require('passport');
 
 const api = require('../api');
 const model = require('../model');
@@ -24,11 +25,14 @@ const init = ( config ) => {
     const app = express();
 
     app.use(logger(config.loggerSettings.mode, config.loggerSettings.other));
+    app.use(express.json());
+    app.use(passport.initialize());
+    require('../../auth');
 
-    api(app, config);
+    api(app, config.model);
 
     const server = app.listen(config.serverSettings.PORT, config.serverSettings.HOST, () => {
-      console.log('config', config);
+      // console.log('config', config);
       resolve(server);
     })
   });

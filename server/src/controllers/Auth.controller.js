@@ -14,7 +14,7 @@ const login = (req, res, next) => {
     } else if (!user && info) {
       res.status(322).send(info);
     } else if (user && info) {
-      console.log(user);
+      // console.log(user);
       jwt.sign({
         userId: user
       }, 'This is my key', (err, token) => {
