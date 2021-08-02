@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS posts (
   PRIMARY KEY (post_id)
 );
 
-CREATE SCHEMA posts_schema
-  CREATE TABLE posts (
+CREATE SCHEMA IF NOT EXISTS posts_schema
+  CREATE TABLE IF NOT EXISTS posts (
     post_id SERIAL,
     user_id INT NOT NULL,
     title VARCHAR(50) NOT NULL,
