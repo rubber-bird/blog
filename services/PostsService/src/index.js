@@ -31,7 +31,7 @@ model.connect(connection)
     config.model = model
     server.init(config)
     .then((res) => {
-      console.log(`Service succesfully started at ${config.serverSettings.HOST}:${config.serverSettings.PORT}`);
+      console.log(`Service succesfully started at ${config.serverSettings.HOST}:${config.serverSettings.PORT} 🐳`);
     })
     .catch((err) => {
       console.error(err);
