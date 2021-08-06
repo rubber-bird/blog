@@ -3,7 +3,18 @@ syntax = "proto3";
 package user;
 
 service UserService {
+  rpc GetUserPrivateInfo (UserPublicInfoRequest) returns (UserPublicInfoResponse) {}
   rpc GetUserInformation (UserInformationRequest) returns (UserInformationResponse) {}
+}
+
+message UserPublicInfoRequest {
+  string username = 1;
+}
+
+message UserPublicInfoResponse {
+  string username = 1;
+  string hashedPassword = 2;
+  string salt = 3;
 }
 
 message UserInformationRequest {
@@ -13,3 +24,4 @@ message UserInformationRequest {
 message UserInformationResponse {
   string h2 = 2;
 }
+
