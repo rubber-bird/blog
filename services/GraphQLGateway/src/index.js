@@ -1,6 +1,9 @@
 const { ApolloServer, gql } = require('apollo-server');
 const { ApolloServerPluginLandingPageGraphQLPlayground } = require('apollo-server-core');
 
+const resolvers = require('./resolvers');
+console.log(resolvers);
+
 const typeDefs = gql`
   type Post {
     id: Int!
@@ -27,39 +30,23 @@ const typeDefs = gql`
   }
 `;
 
-const posts = [{
-  "id": 10,
-  "title": "soksoa",
-  "subtitle": "hhahha",
-  "author": 1
-}]
+
 
 const authors = [{
   id: 1,
   "username": "maa"
 }]
 
-const resolvers = {
-  Query: {
-    posts: () => posts,
-  },
-  Post: {
-    author: (parent) => {
-      let res = authors.filter(a => a.id === parent.author)
-      console.log(res)
-      return res[0]
-    }
-  },
-  Mutation: {
-    login: async (parents, args, context) => {
-      console.log('ss', parents, args, context)
-      let result = {
-        token: 'success'
-      }
-      return result
-    }
-  }
-}
+//   Mutation: {
+//     login: async (parents, args, context) => {
+//       console.log('ss', parents, args, context)
+//       let result = {
+//         token: 'success'
+//       }
+//       return result
+//     }
+//   }
+// }
 
 const config = {
   typeDefs,
