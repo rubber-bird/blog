@@ -2,7 +2,7 @@ const { ApolloServer, gql } = require('apollo-server');
 const { ApolloServerPluginLandingPageGraphQLPlayground } = require('apollo-server-core');
 
 const resolvers = require('./resolvers');
-console.log(resolvers);
+// console.log(resolvers);
 
 const typeDefs = gql`
   type Post {
@@ -36,17 +36,6 @@ const authors = [{
   id: 1,
   "username": "maa"
 }]
-
-//   Mutation: {
-//     login: async (parents, args, context) => {
-//       console.log('ss', parents, args, context)
-//       let result = {
-//         token: 'success'
-//       }
-//       return result
-//     }
-//   }
-// }
 
 const config = {
   typeDefs,
