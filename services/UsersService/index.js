@@ -7,6 +7,13 @@ const getUserInformation = (call, callback) => {
   callback(null, { h2: 'sss' });
 }
 
+const verifyLogin = (call, callback) => {
+  console.log(call.request);
+  callback(null, {
+    token: "ijdijiwedoj"
+  })
+}
+
 const options = {
   keepCase: true,
   longs: String,
@@ -21,7 +28,8 @@ const user = protoDescriptor.user;
 const server = new grpc.Server();
 
 server.addService(user.UserService.service, {
-  GetUserInformation: getUserInformation
+  GetUserInformation: getUserInformation,
+  VerifyLogin: verifyLogin,
 });
 
 server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () => {
