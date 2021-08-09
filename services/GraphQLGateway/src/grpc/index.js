@@ -1,5 +1,6 @@
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
+const Promise = require('bluebird');
 
 const PROTO_PATH = "./user.proto";
 
