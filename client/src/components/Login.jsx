@@ -29,7 +29,10 @@ const Login = () => {
       }
     })
       .then(({data}) => {
-        console.log(data.login.token);
+        localStorage.setItem('token', data.login.token);
+        setTimeout(() => {
+          console.log('ssss', localStorage.getItem('token'));
+        }, 1000)
       })
     // const requestObject = {
     //   username: username,

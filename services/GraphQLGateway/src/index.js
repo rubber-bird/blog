@@ -2,7 +2,6 @@ const { ApolloServer, gql } = require('apollo-server');
 const { ApolloServerPluginLandingPageGraphQLPlayground } = require('apollo-server-core');
 
 const resolvers = require('./resolvers');
-// console.log(resolvers);
 
 const typeDefs = gql`
   type Post {
@@ -30,20 +29,11 @@ const typeDefs = gql`
   }
 `;
 
-
-
-const authors = [{
-  id: 1,
-  "username": "maa"
-}]
-
 const config = {
   typeDefs,
   resolvers,
   plugins: [
-    ApolloServerPluginLandingPageGraphQLPlayground({
-
-    })
+    ApolloServerPluginLandingPageGraphQLPlayground({})
   ]
 };
 

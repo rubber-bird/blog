@@ -2,7 +2,7 @@ const userservice = require('../grpc');
 
 module.exports = {
   login: async (parents, args, context) => {
-
+    console.log(context)
     let reqObj = {
       login: args.username,
       password: args.password

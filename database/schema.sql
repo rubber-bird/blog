@@ -30,9 +30,26 @@ CREATE SCHEMA IF NOT EXISTS posts_schema
     post_id SERIAL,
     user_id INT NOT NULL,
     title VARCHAR(50) NOT NULL,
-    post_text TEXT,
+    subtitle VARCHAR(255) NOT NULL,
+    content TEXT,
 
     PRIMARY KEY (post_id)
+  )
+  CREATE TABLE IF NOT EXISTS likes (
+    like_id SERIAL,
+    post_id INT NOT NULL,
+    user_id INT NOT NULL,
+
+    PRIMARY KEY (like_id),
+
+    CONSTRAINT fk_post
+      FOREIGN KEY(post_id)
+        REFERENCES posts(post_id)
+  )
+  CREATE TABLE IF NOT EXISTS claps (
+    clap_id SERIAL,
+    post_id INT NOT NULL,
+    user_id INT NOT NULL,
   );
 
 CREATE TABLE IF NOT EXISTS comments (

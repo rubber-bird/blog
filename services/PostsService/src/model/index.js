@@ -20,7 +20,7 @@ const model = (dbConnection) => {
   ) => {
     return new Promise(( resolve, reject ) => {
       // console.log(dbConnection);
-      dbConnection.query('insert into posts_schema.posts (user_id, title, post_text) VALUES ($1, $2, $3) RETURNING post_id;',
+      dbConnection.query('insert into posts_schema.posts (user_id, title, content) VALUES ($1, $2, $3) RETURNING post_id;',
       [userId, title, postText], (err, result) => {
         if (err) {
           reject(new Error(err.stack));
